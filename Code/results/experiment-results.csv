@@ -1,0 +1,9 @@
+N,Algorithm,AverageUndo(ns),AverageRedo(ns),Push,Pop,Comparison
+100,Snapshot,1680,840,3,2,1
+100,Command,4260,1820,3,2,1
+1000,Snapshot,880,960,3,2,1
+1000,Command,6040,2860,3,2,1
+10000,Snapshot,900,520,3,2,1
+10000,Command,17340,11560,3,2,1
+50000,Snapshot,1520,540,3,2,1
+50000,Command,87900,59420,3,2,1
