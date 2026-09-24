@@ -1,4 +1,4 @@
-Algorithm Snapshot
+Algorithm  A Snapshot
 
 START
 
@@ -20,8 +20,44 @@ START
 
 END
 
+JAVA Algorithm Snapshot
 
-Algorithm Command
+START
+
+insert(position, text)
+    undoStack.push(document)
+    document = document.substring(0, position)
+             + text
+             + document.substring(position)
+    redoStack.clear()
+
+delete(position, length)
+    undoStack.push(document)
+    document = document.substring(0, position)
+             + document.substring(position + length)
+    redoStack.clear()
+
+replace(position, length, newText)
+    undoStack.push(document)
+    document = document.substring(0, position)
+             + newText
+             + document.substring(position + length)
+    redoStack.clear()
+
+undo()
+    redoStack.push(document)
+    document = undoStack.pop()
+
+redo()
+    undoStack.push(document)
+    document = redoStack.pop()
+
+END
+
+
+
+
+Algorithm B Command
 
 START
 
@@ -48,5 +84,43 @@ START
     นำ Action ออกจาก Redo Stack
     ทำคำสั่งเดิมอีกครั้ง
     เก็บ Action ลง Undo Stack
+
+END
+
+
+JAVA Algorithm Command
+
+
+START
+
+insert(position, text)
+    action = new Action("INSERT", position, "", text)
+    แก้ไข document
+    undoStack.push(action)
+    redoStack.clear()
+
+delete(position, length)
+    oldText = ข้อความที่กำลังจะลบ
+    action = new Action("DELETE", position, oldText, "")
+    ลบข้อความจาก document
+    undoStack.push(action)
+    redoStack.clear()
+
+replace(position, length, newText)
+    oldText = ข้อความเดิม
+    action = new Action("REPLACE", position, oldText, newText)
+    เปลี่ยนข้อความใน document
+    undoStack.push(action)
+    redoStack.clear()
+
+undo()
+    action = undoStack.pop()
+    ย้อนการทำงานของ action
+    redoStack.push(action)
+
+redo()
+    action = redoStack.pop()
+    ทำ action เดิมอีกครั้ง
+    undoStack.push(action)
 
 END
