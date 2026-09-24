@@ -1,0 +1,52 @@
+Algorithm Snapshot
+
+START
+
+รับคำสั่ง INSERT / DELETE / REPLACE
+
+เก็บ Document ปัจจุบันลง Undo Stack
+
+แก้ไข Document
+
+ล้าง Redo Stack
+
+ถ้า Undo:
+    เก็บ Document ปัจจุบันลง Redo Stack
+    นำข้อความจาก Undo Stack กลับมาเป็น Document
+
+ถ้า Redo:
+    เก็บ Document ปัจจุบันลง Undo Stack
+    นำข้อความจาก Redo Stack กลับมาเป็น Document
+
+END
+
+
+Algorithm Command
+
+START
+
+รับคำสั่ง INSERT / DELETE / REPLACE
+
+บันทึก Action
+    Action Type
+    Position
+    Old Text
+    New Text
+
+แก้ไข Document
+
+เก็บ Action ลง Undo Stack
+
+ล้าง Redo Stack
+
+ถ้า Undo:
+    นำ Action ออกจาก Undo Stack
+    ย้อนการแก้ไขตาม Action
+    เก็บ Action ลง Redo Stack
+
+ถ้า Redo:
+    นำ Action ออกจาก Redo Stack
+    ทำคำสั่งเดิมอีกครั้ง
+    เก็บ Action ลง Undo Stack
+
+END
